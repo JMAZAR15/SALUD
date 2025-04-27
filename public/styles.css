@@ -1,0 +1,1626 @@
+/* =====================================================
+   VARIABLES DE TEMA (CLARO Y OSCURO)
+   ===================================================== */
+   :root {
+    /* Tema claro (default) */
+    --bg-main: #f8f9fe;
+    --bg-card: #fff;
+    --bg-sidebar: linear-gradient(195deg, #42424a 0%, #191919 100%);
+    --text-primary: #344767;
+    --text-secondary: #67748e;
+    --text-muted: #6c757d;
+    --text-white: #fff;
+    --border-color: #f0f2f5;
+    --card-shadow: 0 5px 15px -3px rgba(0, 0, 0, 0.07), 0 2px 6px -2px rgba(0, 0, 0, 0.05);
+    --sidebar-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  
+  /* Tema oscuro */
+  [data-theme="dark"] {
+    --bg-main: #1a1e2d;
+    --bg-card: #202940;
+    --bg-sidebar: linear-gradient(195deg, #42424a 0%, #131313 100%);
+    --text-primary: #fff;
+    --text-secondary: #ced4da;
+    --text-muted: #adb5bd;
+    --text-white: #fff;
+    --border-color: #2d3748;
+    --card-shadow: 0 5px 15px -3px rgba(0, 0, 0, 0.3), 0 2px 6px -2px rgba(0, 0, 0, 0.2);
+    --sidebar-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* =====================================================
+     RESET Y ESTILOS BASE
+     ===================================================== */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  body {
+    font-family: 'Roboto', sans-serif;
+    background: var(--bg-main);
+    color: var(--text-primary);
+    position: relative;
+    overflow-x: hidden;
+    min-height: 100vh;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* =====================================================
+     TOGGLE PARA CAMBIO DE TEMA
+     ===================================================== */
+     .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1050;
+  }
+  
+  .theme-toggle:hover {
+    transform: translateY(-3px);
+  }
+  
+  .theme-toggle .material-icons {
+    font-size: 24px;
+    color: var(--text-primary);
+  }
+  
+  /* =====================================================
+     SIDENAV ESTILOS - Material Dashboard Pro Style
+     ===================================================== */
+     .sidenav {
+      z-index: 1040;
+      position: fixed; /* Asegura que el sidebar esté fijo */
+      background-color: var(--bg-sidebar);
+      height: 100vh; /* Asegura que ocupe toda la altura de la ventana */
+      width: 17.125rem;
+      left: 0;
+      top: 0;
+      overflow-y: auto;
+      transition: 0.4s ease;
+    }
+  
+    .sidenav .sidenav-header {
+      height: 80px;
+      padding: 1.5rem 1rem;
+    }
+    
+    .sidenav-header img {
+      height: 30px;
+    }
+  
+    .sidenav .navbar-collapse {
+      height: calc(100vh - 150px);
+      overflow-y: auto;
+    }
+
+  .sidenav.fixed-start {
+    height: 100vh;
+    width: 17.125rem;
+    left: 0;
+  }
+  
+  .sidenav .navbar-nav .nav-item .nav-link {
+    padding: 0.675rem 1rem;
+    margin: 0.15rem 1rem;
+    border-radius: 0.5rem;
+    color: var(--text-white);
+  }
+  
+  .sidenav .navbar-nav .nav-link.active {
+    background-image: linear-gradient(195deg, #EC407A 0%, #D81B60 100%);
+    color: var(--text-white);
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(233, 30, 99, 0.4);
+  }
+  
+  .sidenav .navbar-nav .nav-item .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .bg-gradient-dark {
+    background-image: var(--bg-sidebar);
+  }
+  
+  .main-content {
+  position: relative;
+  margin-left: 17.125rem; /* Ajusta el margen para que coincida con el ancho del sidebar */
+  min-height: 100vh;
+  width: calc(100% - 17.125rem); /* Ajusta el ancho para evitar superposición */
+  padding: 1rem;
+  transition: margin-left 0.3s ease;
+}
+
+@media (max-width: 991.98px) {
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+  }
+  .sidenav {
+    transform: translateX(-17.125rem);
+  }
+  .sidenav.show {
+    transform: translateX(0);
+  }
+}
+
+  .form-switch .form-check-input {
+    width: 2rem;
+    margin-left: -2.5rem;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%28255, 255, 255, 0.25%29'/%3e%3c/svg%3e");
+  }
+  
+  .form-switch .form-check-input:checked {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+  }
+  
+  .form-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+  
+  .form-control-file {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--text-primary);
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+  }
+  
+  .form-select {
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.4rem;
+    color: var(--text-primary);
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    padding: 0.625rem 2rem 0.625rem 0.75rem;
+  }
+  
+  /* =====================================================
+     ESTILOS PARA REGISTRO DE TRABAJADORES (Compatibilidad)
+     ===================================================== */
+  .info-container {
+    position: relative;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .dni-box {
+    display: inline-block;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    background: linear-gradient(195deg, #49a3f1, #1A73E8);
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  .image-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+  }
+  
+  .image-container img {
+    width: 100px;
+    height: auto;
+  }
+
+  @media (max-width: 991.98px) {
+    .main-content {
+      margin-left: 0;
+    }
+    .sidenav.fixed-start {
+      transform: translateX(-17.125rem);
+    }
+    .sidenav.fixed-start.show {
+      transform: translateX(0);
+    }
+  }
+  
+  /* =====================================================
+     NAVBAR ESTILOS - Material Dashboard Pro Style
+     ===================================================== */
+  .navbar-main {
+    transition: all 0.2s ease-in-out;
+    backdrop-filter: saturate(200%) blur(30px);
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 0.75rem 0;
+    margin-top: 1rem;
+  }
+  
+  [data-theme="dark"] .navbar-main {
+    background-color: rgba(32, 41, 64, 0.8);
+  }
+  
+  .navbar-main.blur {
+    box-shadow: 0 10px 25px -12px rgba(0, 0, 0, 0.1);
+  }
+  
+  [data-theme="dark"] .navbar-main.blur {
+    box-shadow: 0 10px 25px -12px rgba(0, 0, 0, 0.3);
+  }
+  
+  .navbar-toggler-icon {
+    background-image: none;
+  }
+  
+  .sidenav-toggler-inner {
+    width: 18px;
+    height: 2px;
+    background-color: var(--text-primary);
+    display: block;
+    border-radius: 1px;
+    position: relative;
+  }
+  
+  .sidenav-toggler-inner + .sidenav-toggler-inner {
+    margin-top: 4px;
+  }
+  
+  /* =====================================================
+     CARD ESTILOS - Material Dashboard Pro Style
+     ===================================================== */
+  .card {
+    box-shadow: var(--card-shadow);
+    border: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    background-color: var(--bg-card);
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 5px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+  
+  [data-theme="dark"] .card:hover {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 5px 10px -5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card .card-header {
+    padding: 1.5rem;
+    border-bottom: 0;
+    background-color: transparent;
+  }
+  
+  .card .card-body {
+    padding: 1.5rem;
+    color: var(--text-secondary);
+  }
+  
+  .card-profile .card-body {
+    position: relative;
+    z-index: 1;
+  
+  }
+  
+  /* Ajuste responsive para las columnas */
+@media (max-width: 768px) {
+  .col-md-7, .col-md-3, .col-md-2 {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  
+  .text-end {
+    text-align: center !important;
+  }
+  
+  #refresh-fitbit-btn {
+    margin-top: 15px;
+  }
+}
+
+  .card-profile {
+    margin-top: 30px;
+    overflow: visible !important; /* Evita que el contenido se recorte */
+    width: 100%; /* Asegura que ocupe todo el ancho disponible */
+  }
+  
+  .card-profile .card-header {
+    margin-top: -30px;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 2;
+  }
+  
+  .card-profile [data-header-animation="true"] {
+    transform: translate3d(0, -50px, 0);
+    transition: all 0.3s ease;
+  }
+  
+  .card-profile:hover [data-header-animation="true"] {
+    transform: translate3d(0, -40px, 0);
+  }
+  
+  /* =====================================================
+     BOTONES Y COMPONENTES - Material Dashboard Pro Style
+     ===================================================== */
+  .btn {
+    padding: 12px 24px;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    transition: all 0.15s ease-in;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  
+  .btn-primary, .bg-gradient-primary {
+    background-image: linear-gradient(195deg, #EC407A 0%, #D81B60 100%);
+    border: none;
+  }
+  
+  .btn-primary:hover, .bg-gradient-primary:hover {
+    background-position: right center;
+    box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.09), 0 2px 3px -1px rgba(0, 0, 0, 0.07);
+  }
+  
+  .btn-info, .bg-gradient-info {
+    background-image: linear-gradient(195deg, #49a3f1 0%, #1A73E8 100%);
+    border: none;
+  }
+  
+  .btn-success, .bg-gradient-success {
+    background-image: linear-gradient(195deg, #66BB6A 0%, #43A047 100%);
+    border: none;
+  }
+  
+  .btn-warning, .bg-gradient-warning {
+    background-image: linear-gradient(195deg, #FFA726 0%, #FB8C00 100%);
+    border: none;
+  }
+  
+  .btn-danger, .bg-gradient-danger {
+    background-image: linear-gradient(195deg, #EF5350 0%, #E53935 100%);
+    border: none;
+  }
+  
+  .btn-dark, .bg-gradient-dark {
+    background-image: linear-gradient(195deg, #42424a 0%, #191919 100%);
+    border: none;
+  }
+
+  /* =====================================================
+   INPUTS Y FORMS - Material Dashboard Pro Style
+   ===================================================== */
+.input-group-outline {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.input-group-outline .form-control {
+  border: 1px solid var(--border-color);
+  border-radius: 0.375rem;
+  padding: 0.75rem;
+  line-height: 1.4;
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+}
+
+.input-group-outline label {
+  position: absolute;
+  top: 0.6rem;
+  left: 0.75rem;
+  pointer-events: none;
+  transition: all 0.2s ease;
+  margin-bottom: 0;
+  color: var(--text-muted);
+}
+
+.input-group-outline .form-control:focus {
+  border-color: #e91e63;
+  box-shadow: none;
+}
+
+.input-group-outline .form-control:focus + label,
+.input-group-outline .form-control.active + label {
+  top: -0.75rem;
+  left: 0.5rem;
+  font-size: 0.75rem;
+  background-color: var(--bg-card);
+  padding: 0 0.5rem;
+}
+
+.input-group-static label {
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  display: block;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.input-group-static .form-control {
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  padding: 0.625rem 0.75rem;
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+}
+
+.input-group-static .form-control:focus {
+  border-color: #e91e63;
+  box-shadow: none;
+}
+
+.form-select {
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+.form-check-input {
+  background-color: var(--bg-card);
+  border-color: var(--border-color);
+}
+
+/* =====================================================
+   ICONOS Y BADGES - Material Dashboard Pro Style
+   ===================================================== */
+.icon {
+  display: inline-block;
+  color: var(--text-white);
+  text-align: center;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.icon-shape {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-sm {
+  width: 32px;
+  height: 32px;
+}
+
+.icon-lg {
+  width: 64px;
+  height: 64px;
+}
+
+.border-radius-xl {
+  border-radius: 0.75rem;
+}
+
+.border-radius-lg {
+  border-radius: 0.5rem;
+}
+
+.border-radius-md {
+  border-radius: 0.375rem;
+}
+
+.shadow-primary {
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(233, 30, 99, 0.4) !important;
+}
+
+.shadow-info {
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(0, 188, 212, 0.4) !important;
+}
+
+.shadow-success {
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(76, 175, 80, 0.4) !important;
+}
+
+.shadow-warning {
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(255, 152, 0, 0.4) !important;
+}
+
+.shadow-danger {
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(244, 67, 54, 0.4) !important;
+}
+
+.shadow-dark {
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(64, 64, 64, 0.4) !important;
+}
+
+/* =====================================================
+   ANIMACIONES - Material Dashboard Pro Style
+   ===================================================== */
+   .move-on-hover {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .move-on-hover:hover {
+    transform: translateY(-3px);
+  }
+  
+  .card-link {
+    cursor: pointer;
+  }
+  
+  .card-link:hover {
+    text-decoration: none;
+  }
+  
+  /* Animación para el círculo pulsante en la imagen del cuerpo */
+  .pulsating-circle {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: rgba(233, 30, 99, 0.4);
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(233, 30, 99, 0.7);
+    }
+    70% {
+      transform: scale(1);
+      box-shadow: 0 0 0 10px rgba(233, 30, 99, 0);
+    }
+    100% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(233, 30, 99, 0);
+    }
+  }
+  
+  /* Animación para el corazón */
+  @keyframes beat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+  
+  /* =====================================================
+     UTILIDADES - Material Dashboard Pro Style
+     ===================================================== */
+  .text-white {
+    color: var(--text-white) !important;
+  }
+  
+  .text-dark {
+    color: var(--text-primary) !important;
+  }
+  
+  .text-primary {
+    color: #1ecbe9 !important;
+  }
+  
+  .text-info {
+    color: #1A73E8 !important;
+  }
+  
+  .text-success {
+    color: #4CAF50 !important;
+  }
+  
+  .text-warning {
+    color: #fb8c00 !important;
+  }
+  
+  .text-danger {
+    color: #F44335 !important;
+  }
+  
+  .text-muted {
+    color: var(--text-muted) !important;
+  }
+  
+  .opacity-10 {
+    opacity: 1 !important;
+  }
+  
+  .opacity-9 {
+    opacity: 0.9 !important;
+  }
+  
+  .opacity-8 {
+    opacity: 0.8 !important;
+  }
+  
+  .opacity-7 {
+    opacity: 0.7 !important;
+  }
+  
+  .opacity-6 {
+    opacity: 0.6 !important;
+  }
+  
+  .opacity-5 {
+    opacity: 0.5 !important;
+  }
+  
+  .avatar-sm {
+    width: 48px;
+    height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+  
+  /* =====================================================
+     COMPONENTES ESPECÍFICOS - Mini Stats Cards
+     ===================================================== */
+  .mini-stats-wid {
+    position: relative;
+    min-height: 100px;
+  }
+  
+  .mini-stats-wid .card-body {
+    padding: 1.25rem;
+  }
+  
+  .mini-stats-wid h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 0.2rem;
+    margin-bottom: 0;
+  }
+  
+  /* =====================================================
+     TEMA OSCURO - Ajustes específicos
+     ===================================================== */
+  [data-theme="dark"] .breadcrumb-item.active {
+    color: var(--text-white);
+  }
+  
+  [data-theme="dark"] .breadcrumb-item a {
+    color: var(--text-muted);
+  }
+  
+  [data-theme="dark"] .nav-link {
+    color: var(--text-white);
+  }
+  
+  [data-theme="dark"] .dropdown-menu {
+    background-color: var(--bg-card);
+    border-color: var(--border-color);
+  }
+  
+  [data-theme="dark"] .dropdown-item {
+    color: var(--text-primary);
+  }
+  
+  [data-theme="dark"] .dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  [data-theme="dark"] .alert-success {
+    background-color: rgba(76, 175, 80, 0.2);
+    color: #4CAF50;
+    border-color: rgba(76, 175, 80, 0.3);
+  }
+  
+  [data-theme="dark"] .alert-warning {
+    background-color: rgba(255, 152, 0, 0.2);
+    color: #fb8c00;
+    border-color: rgba(255, 152, 0, 0.3);
+  }
+  
+  [data-theme="dark"] .alert-danger {
+    background-color: rgba(244, 67, 54, 0.2);
+    color: #F44335;
+    border-color: rgba(244, 67, 54, 0.3);
+  }
+  
+  [data-theme="dark"] .progress {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+   
+  /* =====================================================
+     RESPONSIVE FIXES
+     ===================================================== */
+  @media (max-width: 767.98px) {
+    .card-profile [data-header-animation="true"] {
+      transform: none;
+    }
+    
+    .icon-shape {
+      width: 48px;
+      height: 48px;
+    }
+    
+    .card .card-header, .card .card-body {
+      padding: 1rem;
+    }
+    
+    .card-profile .card-header {
+      margin-top: -20px;
+    }
+    
+    .main-content {
+      padding-top: 70px;
+    }
+  }
+  
+  /* =====================================================
+     COMPATIBILIDAD CON CÓDIGO EXISTENTE
+     ===================================================== */
+  /* Para mantener compatibilidad con el código JS existente */
+  .metric-module {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .heart-icon {
+    width: 60px;
+    height: 60px;
+    margin-right: 1rem;
+    animation: beat 1s infinite;
+  }
+  
+  .heart-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  
+  .metric-icon {
+    width: 50px;
+    height: 50px;
+    margin-right: 1rem;
+  }
+  
+  .metric-icon .icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  
+  .metric-info h3 {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--text-primary);
+  }
+  
+  .metric-info p {
+    margin: 0.3rem 0;
+    font-weight: bold;
+  }
+  
+  .metric-info small {
+    color: var(--text-muted);
+  }
+  
+  /* Compatibilidad con div#fitbitData */
+  #fitbitData .container-fluid {
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .hrv-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.5rem;
+    width: 100%;
+  }
+  
+  /* Ajustes para tarjetas individuales */
+  .hrv-card {
+    border: none !important;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.2s;
+    margin: 0;
+    background-color: var(--bg-card);
+  }
+  
+  /* Asegurar que el header del detalle ocupe todo el ancho */
+  .card-header.bg-info {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  
+  /* Override de Bootstrap para contenedor fluid */
+  .row-cols-lg-6 {
+    flex-wrap: nowrap;
+    margin-left: -5px;
+    margin-right: -5px;
+  }
+  
+  .row-cols-lg-6 > .col {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  
+  /* Tooltip para información interactiva */
+  .tooltip {
+    position: absolute;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: var(--card-shadow);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+    width: 300px;
+    max-width: 80%;
+    z-index: 1000;
+    color: var(--text-primary);
+  }
+  
+  .tooltip.show {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  
+  .tooltip-img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .tooltip-video {
+    width: 100%;
+    max-height: 150px;
+    margin-top: 0.5rem;
+    border-radius: 4px;
+  }
+  
+  .tooltip h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+}
+
+/* Estilos para datos adicionales como nivel de estrés */
+#stress-breakdown {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* Mantener compatibilidad con funciones JavaScript existentes */
+.data-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.data-panel:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+[data-theme="dark"] .data-panel:hover {
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.data-panel h4 {
+  color: var(--text-primary);
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.video-preview {
+  display: none;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 150px;
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+}
+
+.data-panel:hover .video-preview {
+  display: block;
+}
+
+/* =====================================================
+   ESTILOS PARA NOTIFICACIONES
+   ===================================================== */
+.notification-card {
+  border-left: 4px solid #ddd;
+  transition: all 0.2s ease;
+  background-color: var(--bg-card);
+}
+
+.notification-card.unread {
+  background-color: rgba(233, 30, 99, 0.05);
+}
+
+[data-theme="dark"] .notification-card.unread {
+  background-color: rgba(233, 30, 99, 0.1);
+}
+
+.notification-card.priority-high {
+  border-left-color: #F44336;
+}
+
+.notification-card.priority-medium {
+  border-left-color: #FB8C00;
+}
+
+.notification-card.priority-low {
+  border-left-color: #4CAF50;
+}
+
+.notification-icon {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+}
+
+.notification-icon.bg-danger {
+  background: linear-gradient(195deg, #EF5350, #E53935);
+}
+
+.notification-icon.bg-warning {
+  background: linear-gradient(195deg, #FFA726, #FB8C00);
+}
+
+.notification-icon.bg-success {
+  background: linear-gradient(195deg, #66BB6A, #43A047);
+}
+
+.notification-icon.bg-info {
+  background: linear-gradient(195deg, #49a3f1, #1A73E8);
+}
+
+/* =====================================================
+   ESTILOS PARA GRÁFICOS
+   ===================================================== */
+.chart-container {
+  position: relative;
+  height: 300px;
+  margin-bottom: 1.5rem;
+}
+
+.chart-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.chart-stat-item {
+  text-align: center;
+  padding: 0.5rem;
+  background-color: var(--bg-card);
+  border-radius: 0.5rem;
+  box-shadow: var(--card-shadow);
+}
+
+.chart-stat-value {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.chart-stat-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+/* =====================================================
+   ESTILOS PARA TABLA DE HISTÓRICOS
+   ===================================================== */
+.table-responsive {
+  overflow-x: auto;
+}
+
+.table.align-items-center th {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--border-color);
+  letter-spacing: 0.025rem;
+  color: var(--text-primary);
+}
+
+.table.align-items-center td {
+  font-weight: 400;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.table.align-items-center tr:last-child td {
+  border-bottom: none;
+}
+
+.avatar-group {
+  display: flex;
+}
+
+.avatar-group .avatar {
+  margin-right: -10px;
+  transition: transform 0.2s ease;
+}
+
+.avatar-group .avatar:hover {
+  z-index: 10;
+  transform: scale(1.1);
+}
+
+/* =====================================================
+   SCRIPT PARA CAMBIO DE TEMA
+   ===================================================== */
+/* Este es el script que deberás añadir al final de tu HTML */
+/*
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    
+    // Función para alternar entre temas
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      if (currentTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        themeIcon.textContent = 'dark_mode';
+        localStorage.setItem('theme', 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        themeIcon.textContent = 'light_mode';
+        localStorage.setItem('theme', 'dark');
+      }
+    }
+    
+    // Comprobar tema guardado
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      themeIcon.textContent = savedTheme === 'dark' ? 'light_mode' : 'dark_mode';
+    }
+    
+    // Añadir evento de clic
+    themeToggle.addEventListener('click', toggleTheme);
+  });
+</script>
+*/
+
+/* Correcciones para texto en modo oscuro */
+[data-theme="dark"] .card .card-body {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .text-dark {
+  color: var(--text-white) !important;
+}
+
+[data-theme="dark"] .text-muted {
+  color: #adb5bd !important;
+}
+
+[data-theme="dark"] .form-control,
+[data-theme="dark"] .form-select,
+[data-theme="dark"] .input-group-text {
+  color: var(--text-white);
+  background-color: var(--bg-card);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .form-control::placeholder {
+  color: var(--text-muted);
+}
+
+/* Ajuste para que los textos en tarjetas sean visibles en modo oscuro */
+[data-theme="dark"] .card h1,
+[data-theme="dark"] .card h2,
+[data-theme="dark"] .card h3,
+[data-theme="dark"] .card h4,
+[data-theme="dark"] .card h5,
+[data-theme="dark"] .card h6,
+[data-theme="dark"] .card p,
+[data-theme="dark"] .card .text-primary,
+[data-theme="dark"] .card .text-secondary,
+[data-theme="dark"] .card .text-success,
+[data-theme="dark"] .card .text-info,
+[data-theme="dark"] .card .text-warning,
+[data-theme="dark"] .card .text-danger {
+  color: var(--text-white) !important;
+}
+
+/* Ajuste para valores de métricas en modo oscuro */
+[data-theme="dark"] .mini-stats-wid h4,
+[data-theme="dark"] .chart-stat-value {
+  color: var(--text-white) !important;
+}
+
+/* Ajustes para etiquetas en modo oscuro */
+[data-theme="dark"] label,
+[data-theme="dark"] .text-muted.fw-medium {
+  color: var(--text-secondary) !important;
+}
+
+/* Botón de cambio de tema - Asegura visibilidad en ambos modos */
+.theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1050;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  box-shadow: var(--card-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Mejora el aspecto del botón para que sea visible en ambos modos */
+[data-theme="light"] .theme-toggle {
+  background-color: #fff;
+  color: #343a40;
+}
+
+[data-theme="dark"] .theme-toggle {
+  background-color: #343a40;
+  color: #fff;
+}
+
+/* Asegura que el contenedor principal tenga padding adecuado */
+.container-fluid.py-4 {
+  padding-top: 2rem !important;
+  padding-bottom: 2rem !important;
+}
+
+
+/* Mejorar estructura de filas y columnas para mejor responsividad */
+.row {
+  margin-right: -10px;
+  margin-left: -10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Ajustar espaciado entre columnas */
+.col-lg-12, .col-md-2, .col-md-3, .col-md-4, .col-md-6, .col-md-7, .col-md-8, .col-md-12 {
+  padding-right: 10px;
+  padding-left: 10px;
+  position: relative;
+  width: 100%;
+}
+
+/* Asegurar que las filas dentro de las tarjetas tengan el espacio adecuado */
+.card .row {
+  margin-right: -5px;
+  margin-left: -5px;
+}
+
+.card .row > [class*="col-"] {
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+/* Ajustes para las tarjetas que muestran métricas */
+.mini-stats-wid {
+  position: relative;
+  min-height: 100px;
+  margin-bottom: 15px;
+}
+
+.mini-stats-wid .card-body {
+  padding: 1rem;
+}
+
+.mini-stats-wid h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 0.2rem;
+  margin-bottom: 0;
+}
+
+/* Corregir alineación en tarjetas de métricas */
+.d-flex.align-items-center {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.flex-shrink-0 {
+  flex-shrink: 0 !important;
+}
+
+.flex-grow-1 {
+  flex-grow: 1 !important;
+}
+
+/* Ajuste para el modo responsivo en general */
+@media (min-width: 576px) {
+  .container, .container-sm {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container, .container-md, .container-sm {
+    max-width: 720px;
+  }
+  .col-md-2 {
+    flex: 0 0 16.666667%;
+    max-width: 16.666667%;
+  }
+  .col-md-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+  .col-md-4 {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+  }
+  .col-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  .col-md-7 {
+    flex: 0 0 58.333333%;
+    max-width: 58.333333%;
+  }
+  .col-md-8 {
+    flex: 0 0 66.666667%;
+    max-width: 66.666667%;
+  }
+}
+
+@media (min-width: 992px) {
+  .container, .container-lg, .container-md, .container-sm {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container, .container-lg, .container-md, .container-sm, .container-xl {
+    max-width: 1140px;
+  }
+}
+
+/* Ajustes para botones en modo oscuro */
+.btn {
+  font-weight: 600;
+  border-radius: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  transition: all 0.15s ease-in;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.09), 0 2px 3px -1px rgba(0, 0, 0, 0.07);
+}
+
+/* Asegurar que el botón Sincronizar Fitbit sea visible en modo oscuro */
+[data-theme="dark"] .btn {
+  color: var(--text-primary) !important;
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border-color: transparent !important;
+}
+
+[data-theme="dark"] .btn:hover {
+  background-color: #fff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Asegurar que los íconos en los botones sean visibles */
+[data-theme="dark"] .btn .material-icons {
+  color: var(--text-primary) !important;
+}
+
+/* Estilos específicos para el botón de Sincronizar Fitbit */
+#refresh-fitbit-btn, 
+button[id*="sync"], 
+button:contains("Sincronizar"),
+.btn-sync {
+  background-color: #fff !important;
+  color: #e91e63 !important;
+  border: none;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.09), 0 2px 3px -1px rgba(0, 0, 0, 0.07);
+}
+
+/* Asegurar que el ícono dentro del botón de sincronización tenga el color correcto */
+#refresh-fitbit-btn i,
+button[id*="sync"] i,
+button:contains("Sincronizar") i,
+.btn-sync i {
+  color: #e91e63 !important;
+  margin-right: 8px;
+}
+
+/* Estilos para el área de administración en la esquina superior derecha */
+.admin-area, 
+[data-theme="dark"] .admin-area,
+.admin-area * {
+  color: var(--text-white) !important;
+}
+
+/* Asegurar que el texto "Admin" sea visible */
+[data-theme="dark"] .admin-text,
+[data-theme="dark"] span:contains("Admin") {
+  color: var(--text-white) !important;
+  font-weight: 500;
+}
+
+/* Mejorar visibilidad del texto en "Foto del Trabajador" */
+[data-theme="dark"] .trabajador-label,
+[data-theme="dark"] span:contains("Foto del Trabajador") {
+  color: rgba(255, 255, 255, 0.8) !important;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+}
+
+/* Estilos generales para asegurar que el texto en la tarjeta sea visible */
+.card-header * {
+  color: inherit; /* Hereda el color del contenedor padre */
+}
+
+/* Mejora del contraste para íconos de usuario */
+.material-icons.user-icon,
+i.material-icons:contains("person"),
+i.material-icons:contains("account_circle") {
+  color: var(--text-white) !important;
+}
+
+/* Arreglar cualquier etiqueta de foto que pueda tener problemas */
+.photo-label, 
+.image-label,
+span:contains("Foto del") {
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  margin: 5px;
+  color: white !important;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Si hay algún botón específico con id #sincronizar-fitbit */
+#sincronizar-fitbit {
+  background-color: #fff !important;
+  color: #e91e63 !important;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+/* Correcciones para ambos modos - claro y oscuro */
+
+/* Modo claro - Textos oscuros */
+.navbar-nav .nav-item .nav-link,
+.dropdown-toggle,
+.user-dropdown {
+  color: var(--text-primary) !important; /* Usa la variable que cambia según el tema */
+}
+
+/* Modo oscuro - Textos claros */
+[data-theme="dark"] .navbar-nav .nav-item .nav-link,
+[data-theme="dark"] .dropdown-toggle,
+[data-theme="dark"] .user-dropdown {
+  color: var(--text-white) !important;
+}
+
+/* Icono de notificación y admin - Modo claro */
+.material-icons.account_circle,
+.material-icons.person,
+.material-icons.notifications {
+  color: var(--text-primary) !important;
+}
+
+/* Icono de notificación y admin - Modo oscuro */
+[data-theme="dark"] .material-icons.account_circle,
+[data-theme="dark"] .material-icons.person,
+[data-theme="dark"] .material-icons.notifications {
+  color: var(--text-white) !important;
+}
+
+/* Texto "Admin" - Modo claro */
+.admin-text,
+span:contains("Admin") {
+  color: var(--text-primary) !important;
+}
+
+/* Texto "Admin" - Modo oscuro */
+[data-theme="dark"] .admin-text,
+[data-theme="dark"] span:contains("Admin") {
+  color: var(--text-white) !important;
+}
+
+/* Botón Sincronizar Fitbit - Consistente en ambos modos */
+#refresh-fitbit-btn, 
+button[id*="sync"], 
+button:contains("Sincronizar"),
+.btn-sync {
+  background-color: #fff !important;
+  color: #e91e63 !important;
+  border: none;
+  font-weight: bold;
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.09), 0 2px 3px -1px rgba(0, 0, 0, 0.07);
+}
+
+/* "Foto del Trabajador" - Modo claro */
+.photo-label, 
+.image-label,
+span:contains("Foto del") {
+  display: inline-block;
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  margin: 5px;
+  color: var(--text-primary) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* "Foto del Trabajador" - Modo oscuro */
+[data-theme="dark"] .photo-label, 
+[data-theme="dark"] .image-label,
+[data-theme="dark"] span:contains("Foto del") {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--text-white) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* =====================================================
+   ESTILOS ESPECÍFICOS PARA INDEX.HTML
+   ===================================================== */
+
+/* Estilos para el carousel/hero */
+.hero-slider {
+  position: relative;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.hero-slider .carousel-inner {
+  border-radius: 12px;
+}
+
+.hero-slider .carousel-item {
+  height: 500px;
+}
+
+.hero-slider .carousel-item img {
+  position: absolute;
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+
+.hero-slider .carousel-caption {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  bottom: 3rem;
+}
+
+.hero-slider .carousel-caption h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.hero-slider .carousel-caption p {
+  font-size: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero-slider .carousel-control-prev, 
+.hero-slider .carousel-control-next {
+  width: 5%;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.hero-slider:hover .carousel-control-prev, 
+.hero-slider:hover .carousel-control-next {
+  opacity: 0.8;
+}
+
+.hero-slider .carousel-control-prev-icon, 
+.hero-slider .carousel-control-next-icon {
+  width: 40px;
+  height: 40px;
+  background-size: 100% 100%;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Estilos para las tarjetas de características */
+.card-features .card-header {
+  margin-top: -20px;
+}
+
+.card-features .material-icons {
+  font-size: 3rem;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .hero-slider .carousel-item {
+    height: 400px;
+  }
+  
+  .hero-slider .carousel-caption {
+    padding: 1.5rem;
+    bottom: 1.5rem;
+  }
+  
+  .hero-slider .carousel-caption h1 {
+    font-size: 2rem;
+  }
+  
+  .hero-slider .carousel-caption p {
+    font-size: 1rem;
+  }
+  
+  .hero-slider .btn-lg {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-slider .carousel-item {
+    height: 300px;
+  }
+  
+  .hero-slider .carousel-caption {
+    bottom: 1rem;
+    padding: 1rem;
+  }
+  
+  .hero-slider .carousel-caption h1 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Ajustes específicos para tema oscuro */
+[data-theme="dark"] .hero-slider .carousel-caption {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* Animaciones adicionales para objetos en el hero */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.float-element {
+  animation: float 3s ease-in-out infinite;
+}

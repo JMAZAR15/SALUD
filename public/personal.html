@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal - Dashboard de Salud</title>
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <!-- Animate.css para animaciones -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <!-- Tu hoja de estilos personalizada -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+   <!-- Botón de cambio de tema -->
+  <div class="theme-toggle" id="theme-toggle">
+    <i class="material-icons" id="theme-icon">light_mode</i>
+  </div>
+  <!-- Sidebar - Material Dashboard Style -->
+  <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl fixed-start ms-3 bg-gradient-dark" id="sidenav-main">
+    <div class="sidenav-header">
+      <i class="material-icons opacity-10 cursor-pointer text-white position-absolute end-0 top-0 d-none d-xl-none">close</i>
+      <a class="navbar-brand m-0" href="index.html">
+        <img src="imagenes/logos/salome-logo.png" class="navbar-brand-img h-100" alt="Logo SALOME">
+        <span class="ms-1 font-weight-bold text-white">SALOME</span>
+      </a>
+    </div>
+    <hr class="horizontal light mt-0 mb-2">
+    <div class="collapse navbar-collapse w-auto h-auto" id="sidenav-collapse-main">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link text-white active" href="trabajadores.html">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">dashboard</i>
+            </div>
+            <span class="nav-link-text ms-1">Panel Principal</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="registros.html">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">person_add</i>
+            </div>
+            <span class="nav-link-text ms-1">Nuevo Trabajador</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="historicos.html">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">history</i>
+            </div>
+            <span class="nav-link-text ms-1">Datos Históricos</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="notificaciones.html">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">notifications</i>
+            </div>
+            <span class="nav-link-text ms-1">Notificaciones</span>
+          </a>
+        </li>
+        <li class="nav-item mt-3">
+          <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Configuración</h6>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="importar-datos.html">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">upload</i>
+            </div>
+            <span class="nav-link-text ms-1">Importar Datos</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="#">
+            <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="material-icons opacity-10">logout</i>
+            </div>
+            <span class="nav-link-text ms-1">Cerrar Sesión</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </aside>
+  
+  <!-- Main Content Wrapper -->
+  <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
+    <!-- Navbar -->
+    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur">
+      <div class="container-fluid py-1 px-3">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
+            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="index.html">Inicio</a></li>
+            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="trabajadores.html">Trabajadores</a></li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Perfil de Salud</li>
+          </ol>
+          <h6 class="font-weight-bolder mb-0">Perfil de Salud del Trabajador</h6>
+        </nav>
+        <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+          <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+            <div class="input-group input-group-outline">
+              <label class="form-label">Buscar...</label>
+              <input type="text" class="form-control">
+            </div>
+          </div>
+          <ul class="navbar-nav justify-content-end">
+            <li class="nav-item d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-body font-weight-bold px-0">
+                <i class="material-icons me-sm-1">account_circle</i>
+                <span class="d-sm-inline d-none">Admin</span>
+              </a>
+            </li>
+            <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
+                <div class="sidenav-toggler-inner">
+                  <i class="sidenav-toggler-line"></i>
+                  <i class="sidenav-toggler-line"></i>
+                  <i class="sidenav-toggler-line"></i>
+                </div>
+              </a>
+            </li>
+            <li class="nav-item dropdown pe-2 d-flex align-items-center">
+              <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="material-icons cursor-pointer">notifications</i>
+                <span class="position-absolute top-5 start-100 translate-middle badge rounded-pill bg-danger">
+                  3
+                  <span class="visually-hidden">Notificaciones no leídas</span>
+                </span>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+                <li class="mb-2">
+                  <a class="dropdown-item border-radius-md" href="javascript:;">
+                    <div class="d-flex py-1">
+                      <div class="my-auto">
+                        <i class="material-icons text-danger">warning</i>
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="text-sm font-weight-normal mb-1">
+                          <span class="font-weight-bold">Alerta</span> Temperatura elevada
+                        </h6>
+                        <p class="text-xs text-secondary mb-0">
+                          <i class="material-icons me-1">schedule</i>
+                          hace 13 minutos
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li class="mb-2">
+                  <a class="dropdown-item border-radius-md" href="javascript:;">
+                    <div class="d-flex py-1">
+                      <div class="my-auto">
+                        <i class="material-icons text-warning">notifications</i>
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="text-sm font-weight-normal mb-1">
+                          <span class="font-weight-bold">Aviso</span> Frecuencia cardíaca fuera de rango
+                        </h6>
+                        <p class="text-xs text-secondary mb-0">
+                          <i class="material-icons me-1">schedule</i>
+                          hace 30 minutos
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item border-radius-md" href="javascript:;">
+                    <div class="d-flex py-1">
+                      <div class="my-auto">
+                        <i class="material-icons text-success">check_circle</i>
+                      </div>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="text-sm font-weight-normal mb-1">
+                          <span class="font-weight-bold">Éxito</span> Sincronización completada
+                        </h6>
+                        <p class="text-xs text-secondary mb-0">
+                          <i class="material-icons me-1">schedule</i>
+                          hace 1 hora
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- End Navbar -->
+    <div class="container-fluid py-4">
+      <!-- Información del trabajador - Tarjeta de Perfil -->
+      <div class="row mb-4">
+        <div class="col-lg-12">
+          <div class="card z-index-2 card-profile">
+            <div class="card-header bg-gradient-primary text-white p-4 shadow" data-header-animation="true">
+              <div class="row">
+                <div class="col-md-2 text-center">
+                  <img id="foto" src="imagenes/trabajadores/default.jpg" alt="Foto del Trabajador" class="img-fluid rounded-circle border border-3 border-white shadow" style="width: 100px; height: 100px; object-fit: cover;">
+                </div>
+                <div class="col-md-7">
+                  <h3 class="text-white" id="nombre">Cargando nombre...</h3>
+                  <p class="mb-0"><i class="material-icons me-1 align-middle">work</i> <span id="cargo">Cargando cargo...</span></p>
+                  <p class="mb-0"><i class="material-icons me-1 align-middle">cake</i> <span id="edad">--</span> años</p>
+                </div>
+                <div class="col-md-3 text-end">
+                  <div id="refresh-fitbit-container">
+                    <button id="refresh-fitbit-btn" class="btn bg-white text-primary shadow-sm">
+                      <i class="material-icons me-1 align-middle">sync</i> Sincronizar Fitbit
+                    </button>
+                    <button id="auth-fitbit-btn" class="btn btn-primary">
+                      <i class="material-icons me-2">sync</i> Autorizar Fitbit
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-body p-3">
+              <div id="fitbit-loading" class="text-center my-3" style="display: none;">
+                <div class="spinner-border spinner-border-sm text-primary" role="status"></div>
+                <span class="ms-2">Actualizando datos desde Fitbit...</span>
+              </div>
+              <div id="fitbit-error" class="alert alert-warning" style="display: none;">
+                No se pudieron obtener datos de Fitbit. El trabajador necesita autorizar su cuenta de Fitbit.
+                <button id="auth-fitbit-btn" class="btn btn-sm btn-primary mt-2">Autorizar Fitbit</button>
+              </div>
+              <div id="fitbit-success" class="alert alert-success" style="display: none; margin-bottom: 15px;">
+                Datos actualizados correctamente desde Fitbit.
+              </div>
+              
+              <div class="row g-3">
+                <div class="col-md-3">
+                  <div class="card mini-stats-wid shadow-sm h-100">
+                    <div class="card-body">
+                      <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0 avatar-sm rounded-circle bg-light me-3">
+                          <img src="imagenes/logos/height.png" alt="" class="img-fluid p-2">
+                        </div>
+                        <div class="flex-grow-1">
+                          <p class="text-muted fw-medium mb-0">Altura</p>
+                          <h4 class="mb-0" id="altura">--</h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card mini-stats-wid shadow-sm h-100">
+                    <div class="card-body">
+                      <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0 avatar-sm rounded-circle bg-light me-3">
+                          <img src="imagenes/logos/weight.png" alt="" class="img-fluid p-2">
+                        </div>
+                        <div class="flex-grow-1">
+                          <p class="text-muted fw-medium mb-0">Peso</p>
+                          <h4 class="mb-0" id="peso">--</h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card mini-stats-wid shadow-sm h-100">
+                    <div class="card-body">
+                      <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0 avatar-sm rounded-circle bg-light me-3">
+                          <img src="imagenes/logos/steps.png" alt="" class="img-fluid p-2">
+                        </div>
+                        <div class="flex-grow-1">
+                          <p class="text-muted fw-medium mb-0">Promedio de pasos</p>
+                          <h4 class="mb-0" id="promedio-pasos">--</h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="card mini-stats-wid shadow-sm h-100">
+                    <div class="card-body">
+                      <div class="d-flex align-items-center">
+                        <div class="flex-shrink-0 avatar-sm rounded-circle bg-light me-3">
+                          <img src="imagenes/logos/calendar.png" alt="" class="img-fluid p-2">
+                        </div>
+                        <div class="flex-grow-1">
+                          <p class="text-muted fw-medium mb-0">Última actualización</p>
+                          <h4 class="mb-0" id="ultima-actualizacion">--</h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div id="ver-perfil-completo" class="text-end mt-3" style="display: none;">
+                <button id="ver-perfil-btn" class="btn btn-info btn-sm">
+                  <i class="material-icons me-1 align-middle">person</i> Ver Perfil Completo de Fitbit
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Resumen de Salud -->
+      <div class="row mb-4">
+        <div class="col-lg-12">
+          <div class="card z-index-2">
+            <div class="card-header pb-0">
+              <h6>Resumen de Salud</h6>
+            </div>
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="col-lg-6">
+                  <h6 class="text-center mb-2">Salud Física</h6>
+                  <div class="progress bg-light" style="height: 10px;">
+                    <div id="physical-health-bar" class="progress-bar bg-gradient-success" style="width: 75%"></div>
+                  </div>
+                  <p class="text-center mt-2">75%</p>
+                </div>
+                <div class="col-lg-6">
+                  <h6 class="text-center mb-2">Salud Mental</h6>
+                  <div class="progress bg-light" style="height: 10px;">
+                    <div id="mental-health-bar" class="progress-bar bg-gradient-info" style="width: 80%"></div>
+                  </div>
+                  <p class="text-center mt-2">80%</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Métricas vitales -->
+      <div class="row mb-4">
+        <!-- Columna izquierda -->
+        <div class="col-xl-4">
+          <div class="row">
+            <div class="col-md-12 mb-4">
+              <div class="card z-index-2">
+                <div class="card-header p-3 pt-2 bg-transparent">
+                  <div class="icon icon-lg icon-shape bg-gradient-danger shadow-danger text-center border-radius-xl mt-n4 position-absolute">
+                    <i class="material-icons opacity-10">favorite</i>
+                  </div>
+                  <div class="text-end pt-1">
+                    <p class="text-sm mb-0 text-capitalize">Frecuencia Cardiaca</p>
+                    <h4 class="mb-0" id="hr-value">-- bpm</h4>
+                  </div>
+                </div>
+                <hr class="dark horizontal my-0">
+                <div class="card-footer p-3 text-center">
+                  <img src="imagenes/personas/heart.gif" alt="Corazón Palpitante" style="width: 60px; height: 60px;">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12 mb-4">
+              <div class="card z-index-2">
+                <div class="card-header p-3 pt-2 bg-transparent">
+                  <div class="icon icon-lg icon-shape bg-gradient-primary shadow-primary text-center border-radius-xl mt-n4 position-absolute">
+                    <i class="material-icons opacity-10">monitor_heart</i>
+                  </div>
+                  <div class="text-end pt-1">
+                    <p class="text-sm mb-0 text-capitalize">Presión Arterial</p>
+                    <h4 class="mb-0" id="bp-value">--/-- mmHg</h4>
+                  </div>
+                </div>
+                <hr class="dark horizontal my-0">
+                <div class="card-footer p-3">
+                  <p class="mb-0"><span class="text-success text-sm font-weight-bolder">Normal </span>120/80 mmHg</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12 mb-4">
+              <div class="card z-index-2">
+                <div class="card-header p-3 pt-2 bg-transparent">
+                  <div class="icon icon-lg icon-shape bg-gradient-warning shadow-warning text-center border-radius-xl mt-n4 position-absolute">
+                    <i class="material-icons opacity-10">thermostat</i>
+                  </div>
+                  <div class="text-end pt-1">
+                    <p class="text-sm mb-0 text-capitalize">Temperatura</p>
+                    <h4 class="mb-0" id="temp-value">-- °C</h4>
+                  </div>
+                </div>
+                <hr class="dark horizontal my-0">
+                <div class="card-footer p-3">
+                  <p class="mb-0"><span class="text-success text-sm font-weight-bolder">Normal </span>36.1-37.2°C</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Columna central - Imagen del cuerpo -->
+        <div class="col-xl-4 mb-4 d-flex justify-content-center align-items-center">
+          <div class="card card-plain h-100 bg-transparent border-0">
+            <div class="card-body text-center p-3">
+              <div class="position-relative">
+                <img src="imagenes/personas/cuerpoHumano.png" alt="Cuerpo Humano" class="img-fluid" style="max-height: 500px;">
+                <div class="position-absolute top-50 start-50 translate-middle">
+                  <div class="pulsating-circle"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Columna derecha -->
+        <div class="col-xl-4">
+          <div class="row">
+            <div class="col-md-12 mb-4">
+              <div class="card z-index-2">
+                <div class="card-header p-3 pt-2 bg-transparent">
+                  <div class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
+                    <i class="material-icons opacity-10">air</i>
+                  </div>
+                  <div class="text-end pt-1">
+                    <p class="text-sm mb-0 text-capitalize">Nivel de Saturación</p>
+                    <h4 class="mb-0" id="spo2-value">-- %</h4>
+                  </div>
+                </div>
+                <hr class="dark horizontal my-0">
+                <div class="card-footer p-3">
+                  <p class="mb-0"><span class="text-success text-sm font-weight-bolder">Normal </span>95-100%</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12 mb-4">
+              <div class="card z-index-2">
+                <div class="card-header p-3 pt-2 bg-transparent">
+                  <div class="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
+                    <i class="material-icons opacity-10">nightlight</i>
+                  </div>
+                  <div class="text-end pt-1">
+                    <p class="text-sm mb-0 text-capitalize">Efectividad del Sueño</p>
+                    <h4 class="mb-0" id="sleep-value">-- %</h4>
+                  </div>
+                </div>
+                <hr class="dark horizontal my-0">
+                <div class="card-footer p-3">
+                  <p class="mb-0"><span class="text-success text-sm font-weight-bolder">Ideal </span>85-100%</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12 mb-4">
+              <div class="card z-index-2">
+                <div class="card-header p-3 pt-2 bg-transparent">
+                  <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
+                    <i class="material-icons opacity-10">timeline</i>
+                  </div>
+                  <div class="text-end pt-1">
+                    <p class="text-sm mb-0 text-capitalize">Variabilidad (HRV)</p>
+                    <h4 class="mb-0" id="hrv-value">-- ms</h4>
+                  </div>
+                </div>
+                <hr class="dark horizontal my-0">
+                <div class="card-footer p-3">
+                  <p class="mb-0"><span class="text-info text-sm font-weight-bolder">Valores altos </span>indican buena salud</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Métricas adicionales -->
+      <div class="row mb-4">
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card z-index-2">
+            <div class="card-header p-3 pt-2 bg-transparent">
+              <div class="icon icon-lg icon-shape bg-gradient-dark shadow-dark text-center border-radius-xl mt-n4 position-absolute">
+                <i class="material-icons opacity-10">psychology</i>
+              </div>
+              <div class="text-end pt-1">
+                <p class="text-sm mb-0 text-capitalize">Nivel de Estrés</p>
+                <h4 class="mb-0" id="stress-value">-- %</h4>
+              </div>
+            </div>
+            <hr class="dark horizontal my-0">
+            <div class="card-footer p-3">
+              <div id="stress-breakdown"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card z-index-2">
+            <div class="card-header p-3 pt-2 bg-transparent">
+              <div class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
+                <i class="material-icons opacity-10">directions_run</i>
+              </div>
+              <div class="text-end pt-1">
+                <p class="text-sm mb-0 text-capitalize">Zonas Activas</p>
+                <h4 class="mb-0" id="active-zone-value">-- min</h4>
+              </div>
+            </div>
+            <hr class="dark horizontal my-0">
+            <div class="card-footer p-3">
+              <p class="mb-0"><span class="text-success text-sm font-weight-bolder">Recomendado </span>150 min/semana</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card z-index-2">
+            <div class="card-header p-3 pt-2 bg-transparent">
+              <div class="icon icon-lg icon-shape bg-gradient-warning shadow-warning text-center border-radius-xl mt-n4 position-absolute">
+                <i class="material-icons opacity-10">bolt</i>
+              </div>
+              <div class="text-end pt-1">
+                <p class="text-sm mb-0 text-capitalize">Nivel de Energía</p>
+                <h4 class="mb-0" id="energy-level">-- %</h4>
+              </div>
+            </div>
+            <hr class="dark horizontal my-0">
+            <div class="card-footer p-3">
+              <p class="mb-0"><span class="text-info text-sm font-weight-bolder">Basado en </span>patrones de actividad</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Consulta de datos en tiempo real -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header pb-0">
+              <div class="row">
+                <div class="col-lg-6 col-7">
+                  <h6>Consulta de datos en tiempo real</h6>
+                  <p class="text-sm mb-0">
+                    <i class="material-icons text-sm">schedule</i>
+                    Últimos 7 días por defecto
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <form id="fitbit-form">
+                <div class="row">
+                  <div class="col-md-4">
+                    <!-- Tipo de dato select -->
+                    <div class="input-group input-group-static mb-4">
+                      <label for="dataType">Tipo de dato</label>
+                      <select class="form-control" id="dataType">
+                        <option value="heart">Frecuencia cardíaca</option>
+                        <option value="activities">Actividades (Pasos)</option>
+                        <option value="respiratory">Frecuencia respiratoria</option>
+                        <option value="hrv1">HRV</option>
+                        <option value="spo21">SpO₂</option>
+                        <option value="temp">Temperatura</option>
+                        <option value="stress">Nivel de estrés</option>
+                        <option value="activeZones">Zonas activas</option>
+                        <option value="sleep">Sueño</option>
+                        <option value="ecg">ECG</option>
+                      </select>
+                    </div>
+                  </div>
+                  
+                  <!-- Time Range Container - Se mostrará/ocultará según el tipo de dato seleccionado -->
+                  <div id="time-range-container" class="col-md-8">
+                    <div class="row">
+                      <div class="col-md-3">
+                        <div class="input-group input-group-static mb-4">
+                          <label>Hora de inicio</label>
+                          <select class="form-control" id="startHour">
+                            <option value="00">00</option>
+                            <option value="01">01</option>
+                            <option value="02">02</option>
+                            <option value="03">03</option>
+                            <option value="04">04</option>
+                            <option value="05">05</option>
+                            <option value="06">06</option>
+                            <option value="07">07</option>
+                            <option value="08">08</option>
+                            <option value="09">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="input-group input-group-static mb-4">
+                          <label>Minutos</label>
+                          <select class="form-control" id="startMinute">
+                            <option value="00">00</option>
+                            <option value="05">05</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                            <option value="25">25</option>
+                            <option value="30">30</option>
+                            <option value="35">35</option>
+                            <option value="40">40</option>
+                            <option value="45">45</option>
+                            <option value="50">50</option>
+                            <option value="55">55</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="input-group input-group-static mb-4">
+                          <label>Hora de fin</label>
+                          <select class="form-control" id="endHour">
+                            <option value="00">00</option>
+                            <option value="01">01</option>
+                            <option value="02">02</option>
+                            <option value="03">03</option>
+                            <option value="04">04</option>
+                            <option value="05">05</option>
+                            <option value="06">06</option>
+                            <option value="07">07</option>
+                            <option value="08">08</option>
+                            <option value="09">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="input-group input-group-static mb-4">
+                          <label>Minutos</label>
+                          <select class="form-control" id="endMinute">
+                            <option value="00">00</option>
+                            <option value="05">05</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                            <option value="25">25</option>
+                            <option value="30">30</option>
+                            <option value="35">35</option>
+                            <option value="40">40</option>
+                            <option value="45">45</option>
+                            <option value="50">50</option>
+                            <option value="55">55</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Date Range Container - Se mostrará/ocultará según el tipo de dato seleccionado -->
+                  <div id="date-range-container" class="col-md-8" style="display: none;">
+                    <div class="input-group input-group-static mb-4">
+                      <label for="dateSelected">Fecha</label>
+                      <input type="date" class="form-control" id="dateSelected">
+                    </div>
+                  </div>
+                  
+                  <!-- Temp Range Container - Para temperatura -->
+                  <div id="temp-range-container" class="col-md-8" style="display: none;">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="input-group input-group-static mb-4">
+                          <label for="startDate">Fecha inicio</label>
+                          <input type="date" class="form-control" id="startDate">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="input-group input-group-static mb-4">
+                          <label for="endDate">Fecha fin</label>
+                          <input type="date" class="form-control" id="endDate">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Sleep Range Container - Para sueño -->
+                  <div id="sleep-range-container" class="col-md-8" style="display: none;">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="input-group input-group-static mb-4">
+                          <label for="sleepStartDate">Fecha inicio para sueño</label>
+                          <input type="date" class="form-control" id="sleepStartDate">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="input-group input-group-static mb-4">
+                          <label for="sleepEndDate">Fecha fin para sueño</label>
+                          <input type="date" class="form-control" id="sleepEndDate">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- ECG Range Container - Para ECG -->
+                  <div id="ecg-range-container" class="col-md-8" style="display: none;">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="input-group input-group-static mb-4">
+                          <label for="ecgStartDate">Fecha de inicio</label>
+                          <input type="date" class="form-control" id="ecgStartDate">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="input-group input-group-static mb-4">
+                          <label for="ecgEndDate">Fecha de fin</label>
+                          <input type="date" class="form-control" id="ecgEndDate">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- HRV Range Container - Para HRV -->
+                  <div id="hrv-range-container" class="col-md-8" style="display: none;">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="input-group input-group-static mb-4">
+                          <label for="hrvStartDate">Fecha de inicio</label>
+                          <input type="date" class="form-control" id="hrvStartDate">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="input-group input-group-static mb-4">
+                          <label for="hrvEndDate">Fecha de fin</label>
+                          <input type="date" class="form-control" id="hrvEndDate">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="row mt-4">
+                  <div class="col-md-12 text-center">
+                    <button type="submit" class="btn bg-gradient-primary">
+                      <i class="material-icons me-2">query_stats</i> Obtener datos en tiempo real
+                    </button>
+                  </div>
+                </div>
+              </form>
+              
+              <div id="fitbitData" class="mt-4">
+                <!-- Aquí se mostrarán los datos obtenidos -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Enlaces rápidos -->
+      <div class="row mt-4">
+        <div class="col-md-4">
+          <a href="/importar-datos.html?worker_id=1" class="card card-link move-on-hover">
+            <div class="card-body p-4 text-center">
+              <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md mb-2">
+                <i class="material-icons opacity-10">cloud_upload</i>
+              </div>
+              <h5 class="text-gradient text-primary mb-0">Importar Datos Históricos</h5>
+              <p class="mb-0 text-sm">Cargue datos históricos de Fitbit</p>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-4">
+          <a href="historicos.html" class="card card-link move-on-hover">
+            <div class="card-body p-4 text-center">
+              <div class="icon icon-shape bg-gradient-success shadow text-center border-radius-md mb-2">
+                <i class="material-icons opacity-10">analytics</i>
+              </div>
+              <h5 class="text-gradient text-success mb-0">Ver Datos Históricos</h5>
+              <p class="mb-0 text-sm">Consultar tendencias e históricos</p>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-4">
+          <a href="trabajadores.html" class="card card-link move-on-hover">
+            <div class="card-body p-4 text-center">
+              <div class="icon icon-shape bg-gradient-info shadow text-center border-radius-md mb-2">
+                <i class="material-icons opacity-10">group</i>
+              </div>
+              <h5 class="text-gradient text-info mb-0">Regresar al Menú Trabajadores</h5>
+              <p class="mb-0 text-sm">Ver todos los trabajadores</p>
+            </div>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Footer -->
+      <footer class="footer py-4">
+        <div class="container-fluid">
+          <div class="row align-items-center justify-content-lg-between">
+            <div class="col-lg-6 mb-lg-0 mb-4">
+              <div class="copyright text-center text-sm text-muted text-lg-start">
+                © <script>document.write(new Date().getFullYear())</script> SALOME - Sistema de Seguimiento, Apoyo y Localización para la Optimización, Monitorización y Evaluación de la Salud
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </main>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Archivo JS personalizado existente - Mantenemos intacta la funcionalidad -->
+  <script src="personal.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const themeToggle = document.getElementById('theme-toggle');
+      const themeIcon = document.getElementById('theme-icon');
+      
+      // Función para alternar entre temas
+      function toggleTheme() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        if (currentTheme === 'dark') {
+          document.documentElement.setAttribute('data-theme', 'light');
+          themeIcon.textContent = 'dark_mode';
+          localStorage.setItem('theme', 'light');
+        } else {
+          document.documentElement.setAttribute('data-theme', 'dark');
+          themeIcon.textContent = 'light_mode';
+          localStorage.setItem('theme', 'dark');
+        }
+      }
+      
+      // Comprobar tema guardado
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        themeIcon.textContent = savedTheme === 'dark' ? 'light_mode' : 'dark_mode';
+      }
+      
+      // Añadir evento de clic
+      themeToggle.addEventListener('click', toggleTheme);
+    });
+  </script>
+  
+</body>
+</html>
+
